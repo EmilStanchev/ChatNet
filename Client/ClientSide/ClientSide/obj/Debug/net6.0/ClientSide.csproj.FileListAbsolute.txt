@@ -1,0 +1,15 @@
+D:\Vtu- Software engineering\OOP\ChatNet\Client\ClientSide\ClientSide\bin\Debug\net6.0\ClientSide.exe
+D:\Vtu- Software engineering\OOP\ChatNet\Client\ClientSide\ClientSide\bin\Debug\net6.0\ClientSide.deps.json
+D:\Vtu- Software engineering\OOP\ChatNet\Client\ClientSide\ClientSide\bin\Debug\net6.0\ClientSide.runtimeconfig.json
+D:\Vtu- Software engineering\OOP\ChatNet\Client\ClientSide\ClientSide\bin\Debug\net6.0\ClientSide.dll
+D:\Vtu- Software engineering\OOP\ChatNet\Client\ClientSide\ClientSide\bin\Debug\net6.0\ClientSide.pdb
+D:\Vtu- Software engineering\OOP\ChatNet\Client\ClientSide\ClientSide\obj\Debug\net6.0\ClientSide.csproj.AssemblyReference.cache
+D:\Vtu- Software engineering\OOP\ChatNet\Client\ClientSide\ClientSide\obj\Debug\net6.0\ClientSide.GeneratedMSBuildEditorConfig.editorconfig
+D:\Vtu- Software engineering\OOP\ChatNet\Client\ClientSide\ClientSide\obj\Debug\net6.0\ClientSide.AssemblyInfoInputs.cache
+D:\Vtu- Software engineering\OOP\ChatNet\Client\ClientSide\ClientSide\obj\Debug\net6.0\ClientSide.AssemblyInfo.cs
+D:\Vtu- Software engineering\OOP\ChatNet\Client\ClientSide\ClientSide\obj\Debug\net6.0\ClientSide.csproj.CoreCompileInputs.cache
+D:\Vtu- Software engineering\OOP\ChatNet\Client\ClientSide\ClientSide\obj\Debug\net6.0\ClientSide.dll
+D:\Vtu- Software engineering\OOP\ChatNet\Client\ClientSide\ClientSide\obj\Debug\net6.0\refint\ClientSide.dll
+D:\Vtu- Software engineering\OOP\ChatNet\Client\ClientSide\ClientSide\obj\Debug\net6.0\ClientSide.pdb
+D:\Vtu- Software engineering\OOP\ChatNet\Client\ClientSide\ClientSide\obj\Debug\net6.0\ClientSide.genruntimeconfig.cache
+D:\Vtu- Software engineering\OOP\ChatNet\Client\ClientSide\ClientSide\obj\Debug\net6.0\ref\ClientSide.dll
