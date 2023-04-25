@@ -37,6 +37,7 @@ namespace ChatConnect.NugetConfiguration
             Bind<IRoomContoller>().To<RoomController>();
             Bind<IProcessingInput>().To<ProcessingInput>();
             Bind<ICommandHandler>().To<CommandHandler>();
+            Bind<IServerConfiguration>().To<ServerConfiguration>().InSingletonScope();
             Bind<IServerOperations>().To<ServerOperations>();
             Bind<IServerContoller>().To<ServerContoller>();
             Bind<IHandler>().To<Handler>();

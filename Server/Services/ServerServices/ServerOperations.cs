@@ -13,13 +13,12 @@ namespace Services.ServerServices
         private readonly IPrint _print;
         private readonly IReader _reader;
         private readonly IRoomContoller _roomContoller;
-        public ServerOperations(IServer server, IPrint print, IReader reader,
-            IRoomContoller roomOperations)
+        public ServerOperations(IServerConfiguration configuration, IRoomContoller roomContoller)
         {
-            _server = server;
-            _print = print;
-            _reader = reader;
-            _roomContoller = roomOperations;
+            _server = configuration.Server;
+            _print = configuration.Print;
+            _reader = configuration.Reader;
+            _roomContoller = roomContoller;
         }
         public TcpListener Listener()
         {

@@ -50,7 +50,7 @@ namespace Services.RoomServices
         }
         private void GetHistory(IUser user, IRoom room)
         {
-            foreach (var item in room.History)
+            foreach (var item in room.History.OrderBy(m => m.SendAt).ToList())
             {
                 _print.SendMessage(user.Client, $"{item.Sender.Username}: {item.Content}");
             }
