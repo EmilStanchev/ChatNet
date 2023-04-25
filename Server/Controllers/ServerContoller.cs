@@ -19,7 +19,7 @@ namespace Controllers
             {
                 TcpClient clientSocket = serverSocket.AcceptTcpClient();
                 Console.WriteLine($"Client connected: {clientSocket.Client.RemoteEndPoint}");
-                Thread clientThread = new Thread(_service.HandleClientComm);
+                Thread clientThread = new Thread(_service.HandleClient);
                 clientThread.Start(clientSocket);
             }
         }

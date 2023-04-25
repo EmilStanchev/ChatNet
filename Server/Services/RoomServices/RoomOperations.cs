@@ -12,17 +12,14 @@ namespace Services.RoomServices
     {
         private readonly IReader _reader;
         private readonly IPrint _print;
-        private readonly IRoomFactory _roomFactory;
-        private readonly IMessageFactory _messageFactory;
+        private readonly IServerFactory _serverFactory;
         private readonly IServer _server;
-        public RoomOperations(IPrint print, IReader reader, IRoomFactory factory, IServer server
-            , IMessageFactory messageFactory)
+        public RoomOperations(IPrint print, IReader reader, IServer server, IServerFactory serverFactory)
         {
             _reader = reader;
             _print = print;
-            _roomFactory = factory;
+            _serverFactory = serverFactory;
             _server = server;
-            _messageFactory = messageFactory;
         }
         public IRoom CreateRoom(TcpClient client, IUser user)
         {
@@ -35,7 +32,7 @@ namespace Services.RoomServices
                 _print.SendMessage(client, "There is already a room with this name.");
                 roomName = _reader.ReadMessage(client);
             }
-            var room = _roomFactory.CreateRoom(roomName, password);
+            var room = _serverFactory.CreateRoom(roomName, password);
             room.Users.Add(user);
             user.Rooms.Add(room);
             _print.SendMessage(client, $"Room {roomName} created.");
@@ -73,7 +70,7 @@ namespace Services.RoomServices
         }
         public void AddToHistory(IUser user, string message, IRoom room)
         {
-            IMessage newMessage = _messageFactory.CreateMessage(user, message);
+            IMessage newMessage = _serverFactory.CreateMessage(user, message);
             room.History.Add(newMessage);
         }
         public void InvalidCommand(TcpClient client)

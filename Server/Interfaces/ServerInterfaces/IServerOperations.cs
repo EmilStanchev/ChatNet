@@ -5,7 +5,7 @@ namespace Interfaces.ServerInterfaces
     public interface IServerOperations
     {
         public TcpListener Listener();
-        public void HandleClientComm(object client);
+        public void HandleClient(object client);
 
     }
 }

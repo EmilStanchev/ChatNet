@@ -5,6 +5,7 @@ using Interfaces.Factories;
 using Interfaces.PrintingInterfaces;
 using Interfaces.ReadingInterfaces;
 using Interfaces.ServerInterfaces;
+using Interfaces.Services;
 using Interfaces.Services.AuthenticationService;
 using Interfaces.Services.RoomServices;
 using Interfaces.UserInterfaces;
@@ -34,13 +35,12 @@ namespace ChatConnect.NugetConfiguration
             Bind<ILoginService>().To<LoginService>();
             Bind<IRegisterService>().To<RegisterService>();
             Bind<IRoomContoller>().To<RoomController>();
+            Bind<IProcessingInput>().To<ProcessingInput>();
             Bind<ICommandHandler>().To<CommandHandler>();
             Bind<IServerOperations>().To<ServerOperations>();
             Bind<IServerContoller>().To<ServerContoller>();
             Bind<IHandler>().To<Handler>();
-            Bind<IUserFactory>().ToFactory();
-            Bind<IRoomFactory>().ToFactory();
-            Bind<IMessageFactory>().ToFactory();
+            Bind<IServerFactory>().ToFactory();
 
         }
     }

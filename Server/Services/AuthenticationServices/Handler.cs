@@ -37,8 +37,6 @@ namespace Services.AuthenticationServices
                         user = null;
                         break;
                 }
-
-                // Exit the loop if a valid command was processed
                 if (user != null) break;
                 message = _reader.ReadMessage(client);
             }

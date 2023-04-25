@@ -2,8 +2,8 @@
 using Interfaces.PrintingInterfaces;
 using Interfaces.ReadingInterfaces;
 using Interfaces.ServerInterfaces;
-using Interfaces.Services.AuthenticationService;
 using Interfaces.Services.RoomServices;
+using Interfaces.UserInterfaces;
 using System.Net.Sockets;
 
 namespace Services.ServerServices
@@ -11,18 +11,16 @@ namespace Services.ServerServices
     public class ServerOperations : IServerOperations
     {
         private readonly IServer _server;
-        private readonly IHandler _authenticaitonHandler;
         private readonly IPrint _print;
         private readonly IReader _reader;
         private readonly IRoomContoller _roomContoller;
         private readonly ICommandHandler _commandHandler;
-        public ServerOperations(IServer server, IPrint print, IHandler handler, IReader reader,
+        public ServerOperations(IServer server, IPrint print, IReader reader,
             IRoomContoller roomOperations, ICommandHandler commandHandler)
         {
             _server = server;
             _print = print;
             _reader = reader;
-            _authenticaitonHandler = handler;
             _roomContoller = roomOperations;
             _commandHandler = commandHandler;
         }
@@ -33,7 +31,7 @@ namespace Services.ServerServices
             Console.WriteLine($"Server waiting for clients on: {_server.IP}:{_server.Port}");
             return serverSocket;
         }
-        public void HandleClientComm(object client)
+        public void HandleClient(object client)
         {
             TcpClient clientSocket = (TcpClient)client;
             _print.SendWelcomeMessage(clientSocket);
@@ -41,20 +39,7 @@ namespace Services.ServerServices
             {
                 while (clientSocket.Connected)
                 {
-                    string message = _reader.ReadMessage(clientSocket);
-                    var authanticatedUser = _authenticaitonHandler.HandleClient(message, clientSocket);
-                    _print.Commands(clientSocket);
-                    string command = _reader.ReadMessage(clientSocket);
-                    var room = _roomContoller.Handler(clientSocket, authanticatedUser, command);
-                    _print.SendMessage(clientSocket, room.Name.ToString());
-                    while (authanticatedUser.Client.Connected)
-                    {
-                        _print.SendMessage(clientSocket, "Type message for everyone.Type /commands to see all commands");
-                        string messageForAll = _reader.ReadMessage(clientSocket);
-                        _roomContoller.AddMessageToHistory(authanticatedUser, messageForAll, room);
-                        _commandHandler.HandleCommand(messageForAll, authanticatedUser, room);
-                    }
-                    authanticatedUser.Client.Close();
+                    HandleRegistration(clientSocket);
                 }
                 clientSocket.Close();
             }
@@ -62,6 +47,27 @@ namespace Services.ServerServices
             {
                 RemoveClient(clientSocket);
             }
+        }
+        private void HandleRegistration(TcpClient client)
+        {
+            string message = _reader.ReadMessage(client);
+            var authanticatedUser = _commandHandler.Authenticate(message, client);
+            _print.Commands(client);
+            string command = _reader.ReadMessage(client);
+            var room = _roomContoller.Handler(client, authanticatedUser, command);
+            _print.SendMessage(client, room.Name.ToString());
+            while (authanticatedUser.Client.Connected)
+            {
+                HandleCommand(authanticatedUser, room);
+            }
+            authanticatedUser.Client.Close();
+        }
+        private void HandleCommand(IUser user, IRoom room)
+        {
+            _print.SendMessage(user.Client, "Type message for everyone.Type /commands to see all commands");
+            string messageForAll = _reader.ReadMessage(user.Client);
+            _roomContoller.AddMessageToHistory(user, messageForAll, room);
+            _commandHandler.HandleCommand(messageForAll, user, room);
         }
         private void RemoveClient(TcpClient client)
         {

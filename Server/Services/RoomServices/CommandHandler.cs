@@ -3,6 +3,7 @@ using Interfaces.ServerInterfaces;
 using Interfaces.Services.AuthenticationService;
 using Interfaces.Services.RoomServices;
 using Interfaces.UserInterfaces;
+using System.Net.Sockets;
 
 namespace Services.RoomServices
 {
@@ -43,6 +44,11 @@ namespace Services.RoomServices
                     break;
             }
         }
+        public IUser Authenticate(string message, TcpClient client)
+        {
+            return _authenticationHandler.HandleClient(message, client);
+        }
+
         private void GetHistory(IUser user, IRoom room)
         {
             foreach (var item in room.History)
