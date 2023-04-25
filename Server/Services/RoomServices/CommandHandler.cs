@@ -48,7 +48,6 @@ namespace Services.RoomServices
         {
             return _authenticationHandler.HandleClient(message, client);
         }
-
         private void GetHistory(IUser user, IRoom room)
         {
             foreach (var item in room.History)

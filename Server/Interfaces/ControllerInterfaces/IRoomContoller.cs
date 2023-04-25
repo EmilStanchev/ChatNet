@@ -8,5 +8,7 @@ namespace Interfaces.ControllerInterfaces
     {
         public IRoom Handler(TcpClient client, IUser user, string message);
         public void AddMessageToHistory(IUser user, string message, IRoom room);
+        public void HandleCommand(string message, IUser user, IRoom room);
+        public IUser Authenticate(string message, TcpClient client);
     }
 }

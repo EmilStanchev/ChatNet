@@ -2,7 +2,6 @@
 using Interfaces.PrintingInterfaces;
 using Interfaces.ReadingInterfaces;
 using Interfaces.ServerInterfaces;
-using Interfaces.Services.RoomServices;
 using Interfaces.UserInterfaces;
 using System.Net.Sockets;
 
@@ -14,15 +13,13 @@ namespace Services.ServerServices
         private readonly IPrint _print;
         private readonly IReader _reader;
         private readonly IRoomContoller _roomContoller;
-        private readonly ICommandHandler _commandHandler;
         public ServerOperations(IServer server, IPrint print, IReader reader,
-            IRoomContoller roomOperations, ICommandHandler commandHandler)
+            IRoomContoller roomOperations)
         {
             _server = server;
             _print = print;
             _reader = reader;
             _roomContoller = roomOperations;
-            _commandHandler = commandHandler;
         }
         public TcpListener Listener()
         {
@@ -51,7 +48,7 @@ namespace Services.ServerServices
         private void HandleRegistration(TcpClient client)
         {
             string message = _reader.ReadMessage(client);
-            var authanticatedUser = _commandHandler.Authenticate(message, client);
+            var authanticatedUser = _roomContoller.Authenticate(message, client);
             _print.Commands(client);
             string command = _reader.ReadMessage(client);
             var room = _roomContoller.Handler(client, authanticatedUser, command);
@@ -67,7 +64,7 @@ namespace Services.ServerServices
             _print.SendMessage(user.Client, "Type message for everyone.Type /commands to see all commands");
             string messageForAll = _reader.ReadMessage(user.Client);
             _roomContoller.AddMessageToHistory(user, messageForAll, room);
-            _commandHandler.HandleCommand(messageForAll, user, room);
+            _roomContoller.HandleCommand(messageForAll, user, room);
         }
         private void RemoveClient(TcpClient client)
         {
