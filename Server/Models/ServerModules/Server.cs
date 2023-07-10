@@ -7,22 +7,14 @@ namespace Models.ServerModules
 {
     public class Server : IServer
     {
-        private readonly IPAddress _ip = IPAddress.Parse("YOUR IP");
-        private readonly int _port = 8000;
+        private readonly IPAddress _ip = IPAddress.Parse("172.16.1.121");
+        private readonly int _port = 8002;
 
 
-        //public Server()
-        //{
-        //    IP = _ip;
-        //    Port = _port;
-        //}
-        public Server(string ip, int port)
+        public Server()
         {
-
-        }
-        public Server(IPAddress ip)
-        {
-
+            IP = _ip;
+            Port = _port;
         }
         public IPAddress IP { get; set; }
         public int Port { get; set; }

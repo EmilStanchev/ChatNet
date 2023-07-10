@@ -1,8 +1,8 @@
 ﻿using System.Net.Sockets;
 
 
-string ipAddress = "192.168.0.102";
-int port = 8000;
+string ipAddress = "YOUR IP";
+int port = 8002;
 TcpClient client = new TcpClient(ipAddress, port);
 Console.WriteLine("Connected to server: {0}", client.Client.RemoteEndPoint);
 StreamReader reader = new StreamReader(client.GetStream());
