@@ -48,11 +48,11 @@ The app is for educational purposes!
 </details>
 <br>
 <details closed>
-
-<details closed>
 <summary style="font-size:16px">ServeSide folder 📂</summary>
 <p style="margin-left:2%">This folder contains the server-side code for the ChatNet application. It includes the implementation of the chat server, which manages client connections and facilitates message transmission within the Local Area Network (LAN).</p>
 </details>
+<br/>
+<details closed>
 <br/>
 <summary style="font-size:16px">Services folder 📂</summary>
 <p style="margin-left:2%">The Logic folder contains all of the services and the main logic for the app. This includes the app mechanics, such as combat and character progression. The services are responsible for managing various aspects of the app, such as handling inputs and outputs, managing the app state, and handling interactions between different app objects.</p>
