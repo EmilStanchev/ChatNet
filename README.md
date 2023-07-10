@@ -1,5 +1,5 @@
 
-# RpgGame
+# ChatNet
 <details closed>
 <summary style="font-size:16px">How to Install and Run the Project?  <span style="font-size:34px">⚙️</span></summary>
 <ol>
